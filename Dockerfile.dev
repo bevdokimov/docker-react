@@ -1,0 +1,15 @@
+# docker build -f Dockerfile.dev .
+FROM node:alpine
+
+WORKDIR '/app' 
+
+COPY package.json ./
+RUN npm install 
+
+# not necessary BUT
+# makes sense to leave it since in the future we might decide to not use docker-compose
+# or use this as a reference for a production dockerfile
+COPY . .
+
+CMD ["yarn", "start"]
+
