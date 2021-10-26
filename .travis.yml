@@ -1,0 +1,11 @@
+language: generic
+
+sudo: required # superuser level permissions for this build
+services:
+  - docker
+
+before_install:
+  - docker build -t bevdokimov/docker-react -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true USERNAME/docker-react npm run test
